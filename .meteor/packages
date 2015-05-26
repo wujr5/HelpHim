@@ -10,4 +10,7 @@ insecure
 vasaka:livescript-compiler
 mquandalle:jade
 fourseven:scss
+iron:router
+jquery
+froala:editor
 twbs:bootstrap

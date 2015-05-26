@@ -1,0 +1,49 @@
+template(name='myTask')
+  div.container-fluid
+    div.row
+      +functionalArea
+
+      div.col-md-offset-3.col-md-9.my-task
+        
+        div.page-header.row
+          h1.col-md-7 我的任务
+          div.input-group.col-md-4.search
+            input.form-control(type="text" placeholder="Search for...")
+            span.input-group-btn
+              button.btn.btn-default(type="button") Search
+        div.row.sort
+          div.btn-group.col-md-9.sort-by(data-toggle="buttons")
+            label.btn.btn-primary.active
+              input(type="radio" name="options" id="option1" autocomplete="off" checked)
+              | 全部
+
+            label.btn.btn-primary
+              input(type="radio" name="options" id="option2" autocomplete="off")
+              | 学习
+
+            label.btn.btn-primary
+              input(type="radio" name="options" id="option3" autocomplete="off")
+              | 生活
+
+            label.btn.btn-primary
+              input(type="radio" name="options" id="option4" autocomplete="off")
+              | 娱乐
+
+            label.btn.btn-primary
+              input(type="radio" name="options" id="option5" autocomplete="off")
+              | 其他
+
+          div.col-md-3.show-overdue.btn-group.sort-by-me(data-toggle="buttons")
+            label.btn.btn-default
+              input(type="radio" name='sortByMe' autocomplete="off")
+              | 我发布的
+            label.btn.btn-default
+              input(type="radio" name='sortByMe' autocomplete="off")
+              | 我申请的
+
+        div.tasks.row
+          +taskListItem
+          +taskListItem
+          +taskListItem
+          +taskListItem
+          +taskListItem
