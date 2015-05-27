@@ -19,6 +19,10 @@ else
     deadline: '2015-5-27 16:00'
     contact: '13800138000'
   }
+  
   Users.insert {
-
+    name: 'wujiarong'
+    userId: 'XXX'
+    # profileImage: 'images/' + Meteor.userId() + '.png'
+    news: [{type: 'applicant', content: '张三申请xxx任务', taskId: 'XXX'}]
   }
