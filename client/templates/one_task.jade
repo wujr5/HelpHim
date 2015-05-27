@@ -2,3 +2,40 @@ template(name='oneTask')
   div.container-fluid
     div.row
       +functionalArea
+      +oneTaskContent
+
+template(name='oneTaskContent')
+  div.col-md-offset-3.col-md-9.one-task-content
+    div.page-header
+      h1 任务详情
+    div.panel.panel-primary
+      div.panel-heading 突然下大雨，求带雨伞
+      div.panel-body
+        div.row
+          div.col-md-1
+            p
+              strong 类别
+          div.col-md-11
+            p 学习
+
+          div.col-md-1
+            p 
+              strong 描述
+          div.col-md-11
+            p 天突降大雨，被困图书馆，赶时间回宿舍，求好心人帮忙带伞，重酬！
+
+          div.col-md-1 
+            p 
+              strong 酬劳
+          div.col-md-11
+            p 一顿麦当劳！
+
+    div
+      p
+        strong 申请理由
+    div.editor
+      textarea.form-control(id="edit" name="content")
+
+    div
+      button.btn.btn-primary.pull-right 申请
+
