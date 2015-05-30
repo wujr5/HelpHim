@@ -1,4 +1,4 @@
-# HelpHim
+# HelpHim -- work-tree 分支
 HelpHim网页应用的github仓库，基于meteor。
 
 运行和部署：
