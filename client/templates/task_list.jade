@@ -15,12 +15,8 @@ template(name='taskList')
           | 显示过期任务
 
     div.tasks.row
-      +taskListItem
-      +taskListItem
-      +taskListItem
-      +taskListItem
-      +taskListItem
-      +taskListItem
+      each All_Tasks
+        +taskListItem
 
 template(name='sortBy')
   div.btn-group.col-md-9.sort-by(data-toggle="buttons")
