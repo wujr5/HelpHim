@@ -39,8 +39,11 @@ template(name='publishTask')
 
           div.form-group
             label.col-sm-1.control-label 截止
-            div(class="col-sm-10")
-              input(type="email" class="form-control" id="inputEmail3" placeholder="截止时间")
+            div.col-sm-4
+              div.input-group.date(id='datetimepicker')
+                input(type='text' class="form-control")
+                span.input-group-addon
+                  span.glyphicon.glyphicon-calendar
 
           div.form-group
             label.col-sm-1.control-label 联系
