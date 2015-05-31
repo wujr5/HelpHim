@@ -23,7 +23,7 @@ else
   AllTasks.insert {
     title: '我是暖男'
     type: '生活'
-    description: '我可以给你送汤'
+    description: '我可以给你送'
     createBy: 'wuji'
     createAt: '2015-5-27 15:30'
     reward: '一顿麦当劳！'
