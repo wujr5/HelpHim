@@ -40,12 +40,24 @@ template(name='oneTaskContent')
             p 
               strong 申请人
           div.col-md-11
-            //- p #{ task.applicants }
-            p 
-              each task.applicationReasons
-                a
-                  p= name
-                blockquote= reason
+            each task.applicantsAndReasons
+              div.media.applicants.alert-info
+                div.media-left
+                  a(href='#') 
+                    img.media-object(src='images/hd.jpg')
+                div.media-body
+                  a
+                    h4.media-heading= name
+                  div.col-md-9.reason #{ reason }
+
+                  button.pull-right haha
+            //- each task.applicantsAndReasons
+            //-   div.panel.panel-default.applicants
+            //-     div.panel-heading
+            //-       a(href='#') 
+            //-         img.media-object.img-circle(src='images/hd.jpg')
+            //-       div.panel-title.name= name
+            //-     div.panel-body= reason
     div
       p
         strong 申请理由
