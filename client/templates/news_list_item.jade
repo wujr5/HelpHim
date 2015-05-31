@@ -1,6 +1,15 @@
-template(name='newListItem')
+template(name='newsListItem')
   div.col-md-11
-    div.panel.panel-info
-      div.panel-heading 突然下大雨，求带雨伞
-      div.panel-body ... 等人申请此任务
-        a.btn.btn-info.btn-sm.pull-right(href='/oneTask') 详细
+    div.panel(class="panel-#{content.style}")
+      div.panel-heading
+        .row
+            .col-md-11
+                if title
+                    |#{title}
+                else
+                    |#{content.title}
+            .col-md-1
+                if unread
+                    span.glyphicon.glyphicon-envelope(aria-hidden="true" aria-label="Right Algin")
+      div.panel-body {{ content.info }}
+        a.btn.btn-info.btn-sm.pull-right(herf="{{pathFor 'oneTask'}}") 详细
