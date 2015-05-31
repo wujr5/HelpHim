@@ -1,4 +1,5 @@
 Template.publishTask.onRendered !->
+<<<<<<< HEAD
 
   $('#edit').on 'editable.getHTML', (e, editor, html)!->
     $ '#edit' .html html
@@ -13,10 +14,16 @@ Template.publishTask.onRendered !->
   $('.froala-box').children().eq(2).remove()
 
   $('#datetimepicker').datetimepicker {
+=======
+  @$('#edit').editable({inlineMode: false})
+  @$('.froala-box').children().eq(2).remove()
+  @$('#datetimepicker').datetimepicker {
+>>>>>>> 76a64301b0bcfed2b3c27f82ee98967291011a3b
     minDate: new Date()
     useCurrent: true
     showClear: true
   }
+<<<<<<< HEAD
   
   $ '#datetimepicker input[type="text"]' .each !->
     $ this .bind 'focusout', !->
@@ -55,3 +62,5 @@ Template.publishTask.events do
         deadline: new Date ev.target.deadline.value
         contact: ev.target.contact.value
     AllTasks.insert task
+=======
+>>>>>>> 76a64301b0bcfed2b3c27f82ee98967291011a3b
