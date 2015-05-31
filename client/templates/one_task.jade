@@ -9,38 +9,43 @@ template(name='oneTaskContent')
     div.page-header
       h1 任务详情
     div.panel.panel-primary
-      div.panel-heading {{ task.title }}
+      div.panel-heading #{ task.title }
       div.panel-body
         div.row
           div.col-md-1
             p
               strong 类别
           div.col-md-11
-            p {{ task.type }}
+            p #{ task.type }
 
           div.col-md-1
             p 
               strong 描述
           div.col-md-11
-            p {{ task.description }}
+            p #{ task.description }
 
           div.col-md-1 
             p 
               strong 截止
           div.col-md-11
-            p {{ task.deadline }}
+            p #{ task.deadline.toLocaleString }
 
           div.col-md-1 
             p 
               strong 酬劳
           div.col-md-11
-            p {{ task.reward }}
+            p #{ task.reward }
 
           div.col-md-1 
             p 
               strong 申请人
           div.col-md-11
-            p {{ task.applicants }}
+            //- p #{ task.applicants }
+            p 
+              each task.applicationReasons
+                a
+                  p= name
+                blockquote= reason
     div
       p
         strong 申请理由
