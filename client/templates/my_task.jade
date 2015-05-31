@@ -35,15 +35,12 @@ template(name='myTask')
 
           div.col-md-3.show-overdue.btn-group.sort-by-me(data-toggle="buttons")
             label.btn.btn-default
-              input(type="radio" name='sortByMe' autocomplete="off")
+              input(type="radio" name='sortByMe' autocomplete="off" class="publish")
               | 我发布的
             label.btn.btn-default
-              input(type="radio" name='sortByMe' autocomplete="off")
+              input(type="radio" name='sortByMe' autocomplete="off" class="apply")
               | 我申请的
 
         div.tasks.row
-          +taskListItem
-          +taskListItem
-          +taskListItem
-          +taskListItem
-          +taskListItem
+          each All_Tasks
+            +taskListItem
