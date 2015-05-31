@@ -16,7 +16,7 @@ else
     applicationReasons: ['我能在10分钟内拿给你', '我很帅', '我在图书馆，可以跟你一起回去']
     # 执行者
     executant: null
-    deadline: '2015-5-27 16:00'
+    deadline: new Date('12/01/2015 8:33 AM')
     contact: '13800138000'
   }
 
@@ -31,7 +31,7 @@ else
     applicationReasons: ['我能在10分钟内拿给你', '我很帅', '我在图书馆，可以跟你一起回去']
     # 执行者
     executant: null
-    deadline: '2015-5-27 16:00'
+    deadline: new Date('12/05/2015 8:33 AM')
     contact: '13800138000'
   }
 
@@ -46,7 +46,7 @@ else
     applicationReasons: ['我能在10分钟内拿给你', '我很帅', '我在图书馆，可以跟你一起回去']
     # 执行者
     executant: null
-    deadline: '2015-5-27 16:00'
+    deadline: new Date('04/06/2015 8:33 AM')
     contact: '13800138000'
   }
 
@@ -61,7 +61,7 @@ else
     applicationReasons: ['我能在10分钟内拿给你', '我很帅', '我在图书馆，可以跟你一起回去']
     # 执行者
     executant: null
-    deadline: '2015-5-27 16:00'
+    deadline: new Date('04/07/2015 8:33 AM')
     contact: '13800138000'
   }
 
