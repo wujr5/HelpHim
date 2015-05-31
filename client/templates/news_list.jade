@@ -5,8 +5,5 @@ template(name='newsList')
       div.col-md-offset-3.col-md-9.task-list
         div.page-header
           h1 消息列表
-        +newListItem
-        +newListItem
-        +newListItem
-        +newListItem
-        +newListItem
+        each newsList
+            +newsListItem

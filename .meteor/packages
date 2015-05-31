@@ -14,3 +14,7 @@ iron:router
 jquery
 froala:editor
 twbs:bootstrap
+tsega:bootstrap3-datetimepicker
+accounts-ui
+accounts-password
+email
