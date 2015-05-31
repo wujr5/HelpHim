@@ -6,55 +6,56 @@ template(name='publishTask')
       div.col-md-offset-3.col-md-9
         div.page-header
           h1 发布任务
-        div(class="form-horizontal")
-          div(class="form-group")
-            label(for="inputEmail3" class="col-sm-1 control-label") 标题
-            div(class="col-sm-10")
-              input(type="email" class="form-control" id="inputEmail3" placeholder="标题")
+        form.form-horizontal
+          div.form-group.textbox
+            label.col-sm-1.control-label(for="title") 标题
+            div.col-sm-10
+              input.form-control.inputText(type="text" name="title" id="title" placeholder="标题" required)
 
           div.form-group
             label.col-sm-1.control-label 类别
             div.col-sm-10
               div.btn-group(data-toggle="buttons")
-                label.btn.btn-primary
-                  input(type="radio" name="options" id="option2" autocomplete="off")
+                label.btn.btn-info.active
+                  input(type="radio" name="taskType" id="study" value="学习" autocomplete="off" required checked)
                   | 学习
 
-                label.btn.btn-primary
-                  input(type="radio" name="options" id="option3" autocomplete="off")
+                label.btn.btn-info
+                  input(type="radio" name="taskType" id="life" value="生活" autocomplete="off")
                   | 生活
 
-                label.btn.btn-primary
-                  input(type="radio" name="options" id="option4" autocomplete="off")
+                label.btn.btn-info
+                  input(type="radio" name="taskType" id="entertainment" value="娱乐" autocomplete="off")
                   | 娱乐
 
-                label.btn.btn-primary
-                  input(type="radio" name="options" id="option5" autocomplete="off")
+                label.btn.btn-info
+                  input(type="radio" name="taskType" id="else" value="其他" autocomplete="off")
                   | 其他
 
-          div(class="form-group")
-            label(for="inputPassword3" class="col-sm-1 control-label") 描述
-            div(class="col-sm-10")
-              textarea.form-control(id="edit" name="content")
-
           div.form-group
-            label.col-sm-1.control-label 截止
+            label.col-sm-1.control-label 描述
+            div.col-sm-10
+              textarea.form-control(id="edit" name="description")
+
+          div.form-group.textbox
+            label.col-sm-1.control-label(for="deadline") 截止
             div.col-sm-4
               div.input-group.date(id='datetimepicker')
-                input(type='text' class="form-control")
+                input.form-control.inputText(type="text" name="deadline" id="deadline" placeholder="截止时间" required)
                 span.input-group-addon
                   span.glyphicon.glyphicon-calendar
 
+          div.form-group.textbox
+            label.col-sm-1.control-label(for="contact") 联系
+            div.col-sm-10
+              input.form-control.inputText(type="text" name="contact" id="contact" placeholder="联系方式" required)
+
+          div.form-group.textbox
+            label.col-sm-1.control-label(for="reward") 报酬
+            div.col-sm-10
+              input.form-control.inputText(type="text" name="reward" id="reward" placeholder="报酬" required)
+
           div.form-group
-            label.col-sm-1.control-label 联系
-            div(class="col-sm-10")
-              input(type="email" class="form-control" id="inputEmail3" placeholder="联系方式")
+            div.col-sm-offset-10
+              button.btn.btn-primary(type='submit') 确定
 
-          div(class="form-group")
-            label(for="inputEmail3" class="col-sm-1 control-label") 报酬
-            div(class="col-sm-10")
-              input(type="email" class="form-control" id="inputEmail3" placeholder="报酬")
-
-          div(class="form-group")
-            div(class="col-sm-offset-10")
-              button(class="btn btn-default") 确定
