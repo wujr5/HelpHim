@@ -17,3 +17,4 @@ twbs:bootstrap
 tsega:bootstrap3-datetimepicker
 accounts-ui
 accounts-password
+email
