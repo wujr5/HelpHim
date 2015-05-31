@@ -9,38 +9,38 @@ template(name='oneTaskContent')
     div.page-header
       h1 任务详情
     div.panel.panel-primary
-      div.panel-heading 突然下大雨，求带雨伞
+      div.panel-heading {{ task.title }}
       div.panel-body
         div.row
           div.col-md-1
             p
               strong 类别
           div.col-md-11
-            p 生活
+            p {{ task.type }}
 
           div.col-md-1
             p 
               strong 描述
           div.col-md-11
-            p 天突降大雨，被困图书馆，赶时间回宿舍，求好心人帮忙带伞，重酬！
+            p {{ task.description }}
 
           div.col-md-1 
             p 
               strong 截止
           div.col-md-11
-            p 2015年5月27日 16:00
+            p {{ task.deadline }}
 
           div.col-md-1 
             p 
               strong 酬劳
           div.col-md-11
-            p 一顿麦当劳！
+            p {{ task.reward }}
 
           div.col-md-1 
             p 
               strong 申请人
           div.col-md-11
-            p 张三，李四
+            p {{ task.applicants }}
     div
       p
         strong 申请理由
