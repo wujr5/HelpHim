@@ -1,23 +1,38 @@
 if Meteor.isClient
   window.AllTasks = new Mongo.Collection('allTasks')
-  window.Users = new Mongo.Collection('users')
+  window.AllUsers = new Mongo.Collection('allUsers')
 else
   AllTasks = new Mongo.Collection('allTasks')
-  Users = new Mongo.Collection('users')
-  
+  AllUsers = new Mongo.Collection('allUsers')
+
   if AllTasks.find().count() == 0
     AllTasks.insert {
       title: '突然下大雨，求带雨伞'
       type: '生活'
       description: '天突降大雨，被困图书馆，赶时间回宿舍，求好心人帮忙带伞，重酬!'
       createBy: 'wujiarong'
-      createAt: '2015-5-27 15:30'
+      createAt: new Date()
       reward: '一顿麦当劳！'
       applicants: ['zhangsan', 'lisi', 'wangwu']
-      applicationReasons: ['我能在10分钟内拿给你', '我很帅', '我在图书馆，可以跟你一起回去']
+      applicationReasons: [{zhangsan: '我能在10分钟内拿给你'}, {lisi: '我很帅'}, {wangwu: '我在图书馆，可以跟你一起回去'}]
       # 执行者
       executant: null
-      deadline: '2015-5-27 16:00'
+      deadline: new Date()
+      contact: '13800138000'
+    }
+
+    AllTasks.insert {
+      title: '突然下大雨，求带雨伞'
+      type: '生活'
+      description: '天突降大雨，被困图书馆，赶时间回宿舍，求好心人帮忙带伞，重酬!'
+      createBy: 'wujiarong'
+      createAt: new Date()
+      reward: '一顿麦当劳！'
+      applicants: ['zhangsan', 'lisi', 'wangwu']
+      applicationReasons: [{zhangsan: '我能在10分钟内拿给你'}, {lisi: '我很帅'}, {wangwu: '我在图书馆，可以跟你一起回去'}]
+      # 执行者
+      executant: null
+      deadline: new Date()
       contact: '13800138000'
     }
 
