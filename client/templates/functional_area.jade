@@ -6,8 +6,9 @@ template(name='functionalArea')
       h4 
         a
           +loginButtons
-    div.function
-      a.btn.btn-info.btn-block(href='/home') 主页
-      a.btn.btn-info.btn-block(href='/newsList') 消息
-      a.btn.btn-info.btn-block(href='/publishTask') 发布任务
-      a.btn.btn-info.btn-block(href='/myTask') 我的任务
+    if currentUser
+      div.function
+        a.btn.btn-info.btn-block(href='/home') 主页
+        a.btn.btn-info.btn-block(href='/newsList') 消息
+        a.btn.btn-info.btn-block(href='/publishTask') 发布任务
+        a.btn.btn-info.btn-block(href='/myTask') 我的任务
