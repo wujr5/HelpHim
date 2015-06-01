@@ -46,10 +46,9 @@ Template.publishTask.events do
       * title: ev.target.title.value
         type: ev.target.taskType.value
         description: ev.target.description.value
-        createBy: Meteor.user!.username
-        createAt: Date.now!
+        createdBy: Meteor.user!.username
+        createdAt: Date.now!
         reward: ev.target.reward.value
-        applicants: null
         applicationReasons: null
         executant: null
         deadline: new Date ev.target.deadline.value

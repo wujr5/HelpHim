@@ -9,7 +9,7 @@ template(name='oneTaskContent')
     div.page-header
       h1 任务详情
     div.panel.panel-primary
-      div.panel-heading #{ title }
+      div.panel-heading #{ task.title }
       div.panel-body
         div.row
 
@@ -17,45 +17,45 @@ template(name='oneTaskContent')
             p
               strong 发布者
           div.col-md-10
-            p #{ createdBy }
+            p #{ task.createdBy }
 
           div.col-md-2.text-center
             p
               strong 类别
           div.col-md-10
-            p #{ type }
+            p #{ task.type }
 
           div.col-md-2.text-center
             p 
               strong 描述
           div.col-md-10
-            p #{ description }
+            p #{ task.description }
 
           div.col-md-2.text-center
             p 
               strong 截止
           div.col-md-10
-            p #{ deadline.toLocaleString }
+            p #{ task.deadline.toLocaleString }
 
           div.col-md-2.text-center
             p 
               strong 酬劳
           div.col-md-10
-            p #{ reward }
+            p #{ task.reward }
 
           if isExecutant executant
             div.col-md-2.text-center
               p 
                 strong 联系方式
             div.col-md-10
-              p #{ contact }
+              p #{ task.contact }
 
           div.col-md-2.text-center
             p 
               strong 申请人
           div.col-md-10
-            each applicantsAndReasons
-              div.media.applicants.alert-info.alert
+            each task.applicantsAndReasons
+              div.media.applicants(class='{{#if isExecutant task name "applicant"}} alert alert-success {{else}} well {{/if}}')
                 div.media-left
                   a(href='#') 
                     img.media-object(src = '{{userImageSrc name}}')
@@ -63,10 +63,10 @@ template(name='oneTaskContent')
                   a
                     h4.media-heading #{ name }
                   div.col-md-10.reason #{ reason }
-                  if isPublisher createdBy
+                  if isPublisher task
                     button.btn.btn-info.btn-sm.pull-right 同意
 
-    if canBeApply _id
+    if canBeApply task
       div
         p
           strong 申请理由
@@ -76,10 +76,15 @@ template(name='oneTaskContent')
     div.operation-btns
       if isAdmin
         button.btn.btn-primary.pull-right 删除任务
+
       else
         if canBeApply task
           button.btn.btn-primary.pull-right 申请任务
-        if isExecutant task.executant
+
+        if isExecutant task task.executant 'current-user'
           button.btn.btn-primary.pull-right 申请完成
-        if isPublisher task.createdBy
+
+        if isPublisher task
           button.btn.btn-primary.pull-right 取消发布
+
+
