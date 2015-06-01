@@ -12,6 +12,13 @@ template(name='oneTaskContent')
       div.panel-heading #{ title }
       div.panel-body
         div.row
+
+          div.col-md-2.text-center
+            p
+              strong 发布者
+          div.col-md-10
+            p #{ createdBy }
+
           div.col-md-2.text-center
             p
               strong 类别
@@ -36,12 +43,12 @@ template(name='oneTaskContent')
           div.col-md-10
             p #{ reward }
 
-          if isExecutant task.executant
+          if isExecutant executant
             div.col-md-2.text-center
               p 
                 strong 联系方式
             div.col-md-10
-              p #{ task.contact }
+              p #{ contact }
 
           div.col-md-2.text-center
             p 
@@ -56,23 +63,23 @@ template(name='oneTaskContent')
                   a
                     h4.media-heading #{ name }
                   div.col-md-10.reason #{ reason }
-                  if isPublisher task.createdBy
+                  if isPublisher createdBy
                     button.btn.btn-info.btn-sm.pull-right 同意
 
-    //- if canBeApply task
-    //-   div
-    //-     p
-    //-       strong 申请理由
-    //-   div.editor
-    //-     textarea.form-control(id="edit" name="content")
+    if canBeApply _id
+      div
+        p
+          strong 申请理由
+      div.editor
+        textarea.form-control(id="edit" name="content")
 
-    //- div.operation-btns
-    //-   if isAdmin
-    //-     button.btn.btn-primary.pull-right 删除任务
-    //-   else
-    //-     if canBeApply task
-    //-       button.btn.btn-primary.pull-right 申请任务
-    //-     if isExecutant task.executant
-    //-       button.btn.btn-primary.pull-right 申请完成
-    //-     if isPublisher task.createdBy
-    //-       button.btn.btn-primary.pull-right 取消发布
+    div.operation-btns
+      if isAdmin
+        button.btn.btn-primary.pull-right 删除任务
+      else
+        if canBeApply task
+          button.btn.btn-primary.pull-right 申请任务
+        if isExecutant task.executant
+          button.btn.btn-primary.pull-right 申请完成
+        if isPublisher task.createdBy
+          button.btn.btn-primary.pull-right 取消发布

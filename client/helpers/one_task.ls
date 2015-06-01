@@ -9,14 +9,15 @@ Template.oneTaskContent.helpers do
     Meteor.user().username == publisher
   isAdmin: ->
     Meteor.user().username == 'admin'
-  canBeApply: (task)->
+  canBeApply: (_id)->
+    task = AllTasks.findOne({_id: _id})
     if task.executant == null and task.deadline > (new Date()) and task.createdBy != Meteor.user().username
       return true
     false
   userImageSrc: (name)->
-    # '/images/hd.jpg'
-    console.log Meteor.users.findOne({username: name}).profileImage
-    Meteor.users.findOne({username: name}).profileImage
+    '/images/hd.jpg'
+    # console.log Meteor.users.findOne({username: name}).profileImage
+    # Meteor.users.findOne({username: name}).profileImage
 
 Template.oneTaskContent.events do
   'click #edit': !->
