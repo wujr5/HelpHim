@@ -44,15 +44,15 @@ Template.taskList.events do
   'change .show-overdue input': !->
     Session.set "isShowOverdue", !Session.get "isShowOverdue"
 
-# Template.sortBy.events do
-#   'change \#option1': (event) !->
-#     Session.set "sortBy", "All",
-#   'change \#option2': (event) !->
-#     Session.set "sortBy", "Study",
-#   'change \#option3': (event) !->
-#     Session.set "sortBy", "Life",
-#   'change \#option4': (event) !->
-#     Session.set "sortBy", "Entertainment",
-#   'change \#option5': (event) !->
-#     Session.set "sortBy", "Others"
+Template.sortBy.events do
+  'change \#option1': (event) !->
+    Session.set "sortBy", "All",
+  'change \#option2': (event) !->
+    Session.set "sortBy", "Study",
+  'change \#option3': (event) !->
+    Session.set "sortBy", "Life",
+  'change \#option4': (event) !->
+    Session.set "sortBy", "Entertainment",
+  'change \#option5': (event) !->
+    Session.set "sortBy", "Others"
 
