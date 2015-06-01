@@ -51,7 +51,7 @@ template(name='oneTaskContent')
               div.media.applicants.alert-info.alert
                 div.media-left
                   a(href='#') 
-                    img.media-object(src='images/hd.jpg')
+                    img.media-object(src = '{{userImageSrc name}}')
                 div.media-body
                   a
                     h4.media-heading #{ name }
@@ -59,11 +59,12 @@ template(name='oneTaskContent')
                   if isPublisher task.createdBy
                     button.btn.btn-info.btn-sm.pull-right 同意
 
-    div
-      p
-        strong 申请理由
-    div.editor
-      textarea.form-control(id="edit" name="content")
+    if canBeApply task
+      div
+        p
+          strong 申请理由
+      div.editor
+        textarea.form-control(id="edit" name="content")
 
     div.operation-btns
       if isAdmin

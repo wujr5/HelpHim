@@ -1,6 +1,6 @@
-Template.oneTaskContent.onRendered !->
-  @$('#edit').editable({inlineMode: false})
-  @$('.froala-box').children().eq(2).remove()
+# Template.oneTaskContent.onRendered !->
+#   @$('#edit').editable({inlineMode: false})
+#   @$('.froala-box').children().eq(2).remove()
 
 Template.oneTaskContent.helpers do
   task: ->
@@ -12,6 +12,15 @@ Template.oneTaskContent.helpers do
   isAdmin: ->
     Meteor.user().username == 'admin'
   canBeApply: (task)->
-    if task.executant == null and task.deadline > (new Date())
+    if task.executant == null and task.deadline > (new Date()) and task.createdBy != Meteor.user().username
       return true
     false
+  userImageSrc: (name)->
+    'images/hd.jpg'
+    # console.log Meteor.users.findOne({username: name}).profileImage
+    # Meteor.users.findOne({username: name}).profileImage
+
+Template.oneTaskContent.events do
+  'click #edit': !->
+    $('#edit').editable({inlineMode: false})
+    $('.froala-box').children().eq(2).remove()
