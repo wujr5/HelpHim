@@ -13,6 +13,10 @@ Template.oneTaskContent.helpers do
     else if role == 'applicant'
       task.executant == name
 
+  isSelf: (name)->
+    console.log name
+    Meteor.user().username == name
+
   isPublisher: (task)->
     Meteor.user().username == task.publisher and task.executant == null
 
@@ -21,15 +25,11 @@ Template.oneTaskContent.helpers do
 
   canBeApply: (task)->    
     if task.executant == null and task.deadline > (new Date()) and task.createdBy != Meteor.user().username
-
       flag = true
-
       task.applicantsAndReasons.forEach (each)!->
         if each.name == Meteor.user().username
-          flag = false
-
+          flag := false
       flag
-
     else
       false
 

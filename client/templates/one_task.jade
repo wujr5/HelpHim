@@ -43,7 +43,7 @@ template(name='oneTaskContent')
           div.col-md-10
             p #{ task.reward }
 
-          if isExecutant executant
+          if isExecutant task task.executant 'current-user'
             div.col-md-2.text-center
               p 
                 strong 联系方式
@@ -55,7 +55,7 @@ template(name='oneTaskContent')
               strong 申请人
           div.col-md-10
             each task.applicantsAndReasons
-              div.media.applicants(class='{{#if isExecutant task name "applicant"}} alert alert-success {{else}} well {{/if}}')
+              div.media.applicants(class='{{#if isExecutant task name "applicant"}} alert alert-success {{else}} {{#if isSelf name}} alert alert-info {{else}} well {{/if}} {{/if}}')
                 div.media-left
                   a(href='#') 
                     img.media-object(src = '{{userImageSrc name}}')
