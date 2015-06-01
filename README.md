@@ -5,9 +5,11 @@ HelpHim网页应用的github仓库，基于meteor。
 
 1. git clone https://github.com/wujr5/HelpHim.git
 
-2. git checkout work-tree
+2. cd HelpHim
 
-3. meteor
+3. git checkout work-tree
+
+4. meteor
 
 贡献到work-tree
 
