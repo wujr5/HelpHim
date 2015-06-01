@@ -8,35 +8,31 @@ template(name='taskList')
         span.input-group-btn
           button.btn.btn-default(type="button") Search
     div.row
-      +sortBy
+      div.btn-group.col-md-9.sort-by(data-toggle="buttons")
+        label.btn.btn-primary.active.test
+          input(type="radio" name="options" id="option1" autocomplete="off" checked)
+          | 全部
+
+        label.btn.btn-primary
+          input(type="radio" name="options" id="option2" autocomplete="off")
+          | 学习
+
+        label.btn.btn-primary
+          input(type="radio" name="options" id="option3" autocomplete="off")
+          | 生活
+
+        label.btn.btn-primary
+          input(type="radio" name="options" id="option4" autocomplete="off")
+          | 娱乐
+
+        label.btn.btn-primary
+          input(type="radio" name="options" id="option5" autocomplete="off")
+          | 其他
       div.col-md-2.show-overdue.btn-group(data-toggle="buttons")
         label.btn.btn-default
-          input(type="checkbox" autocomplete="off")
+          input(type="checkbox" autocomplete="off" id="showOverdue")
           | 显示过期任务
 
     div.tasks.row
       each All_Tasks
         +taskListItem
-
-template(name='sortBy')
-  div.btn-group.col-md-9.sort-by(data-toggle="buttons")
-    label.btn.btn-primary.active.test
-      input(type="radio" name="options" id="option1" autocomplete="off" checked)
-      | 全部
-
-    label.btn.btn-primary
-      input(type="radio" name="options" id="option2" autocomplete="off")
-      | 学习
-
-    label.btn.btn-primary
-      input(type="radio" name="options" id="option3" autocomplete="off")
-      | 生活
-
-    label.btn.btn-primary
-      input(type="radio" name="options" id="option4" autocomplete="off")
-      | 娱乐
-
-    label.btn.btn-primary
-      input(type="radio" name="options" id="option5" autocomplete="off")
-      | 其他
-
