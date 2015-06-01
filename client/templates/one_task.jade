@@ -12,46 +12,67 @@ template(name='oneTaskContent')
       div.panel-heading #{ task.title }
       div.panel-body
         div.row
-          div.col-md-1
+          div.col-md-2.text-center
             p
               strong 类别
-          div.col-md-11
+          div.col-md-10
             p #{ task.type }
 
-          div.col-md-1
+          div.col-md-2.text-center
             p 
               strong 描述
-          div.col-md-11
+          div.col-md-10
             p #{ task.description }
 
-          div.col-md-1 
+          div.col-md-2.text-center
             p 
               strong 截止
-          div.col-md-11
+          div.col-md-10
             p #{ task.deadline.toLocaleString }
 
-          div.col-md-1 
+          div.col-md-2.text-center
             p 
               strong 酬劳
-          div.col-md-11
+          div.col-md-10
             p #{ task.reward }
 
-          div.col-md-1 
+          if isExecutant task.executant
+            div.col-md-2.text-center
+              p 
+                strong 联系方式
+            div.col-md-10
+              p #{ task.contact }
+
+          div.col-md-2.text-center
             p 
               strong 申请人
-          div.col-md-11
-            //- p #{ task.applicants }
-            p 
-              each task.applicationReasons
-                a
-                  p= name
-                blockquote= reason
-    div
-      p
-        strong 申请理由
-    div.editor
-      textarea.form-control(id="edit" name="content")
+          div.col-md-10
+            each task.applicantsAndReasons
+              div.media.applicants.alert-info.alert
+                div.media-left
+                  a(href='#') 
+                    img.media-object(src = '{{userImageSrc name}}')
+                div.media-body
+                  a
+                    h4.media-heading #{ name }
+                  div.col-md-10.reason #{ reason }
+                  if isPublisher task.createdBy
+                    button.btn.btn-info.btn-sm.pull-right 同意
 
-    div
-      button.btn.btn-primary.pull-right 申请
+    if canBeApply task
+      div
+        p
+          strong 申请理由
+      div.editor
+        textarea.form-control(id="edit" name="content")
 
+    div.operation-btns
+      if isAdmin
+        button.btn.btn-primary.pull-right 删除任务
+      else
+        if canBeApply task
+          button.btn.btn-primary.pull-right 申请任务
+        if isExecutant task.executant
+          button.btn.btn-primary.pull-right 申请完成
+        if isPublisher task.createdBy
+          button.btn.btn-primary.pull-right 取消发布

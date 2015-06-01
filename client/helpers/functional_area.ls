@@ -1,0 +1,1 @@
+# Template.functionalArea.helpers do

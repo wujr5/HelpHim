@@ -1,6 +1,5 @@
 Template.taskList.helpers do
   All_Tasks: ->
-
     # 全部
     if Session.get("sortBy") is "All"
       if Session.get("isShowOverdue")
@@ -56,3 +55,4 @@ Template.sortBy.events do
     Session.set "sortBy", "Entertainment",
   'change \#option5': (event) !->
     Session.set "sortBy", "Others"
+
