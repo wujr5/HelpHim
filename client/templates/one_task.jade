@@ -9,32 +9,32 @@ template(name='oneTaskContent')
     div.page-header
       h1 任务详情
     div.panel.panel-primary
-      div.panel-heading #{ task.title }
+      div.panel-heading #{ title }
       div.panel-body
         div.row
           div.col-md-2.text-center
             p
               strong 类别
           div.col-md-10
-            p #{ task.type }
+            p #{ type }
 
           div.col-md-2.text-center
             p 
               strong 描述
           div.col-md-10
-            p #{ task.description }
+            p #{ description }
 
           div.col-md-2.text-center
             p 
               strong 截止
           div.col-md-10
-            p #{ task.deadline.toLocaleString }
+            p #{ deadline.toLocaleString }
 
           div.col-md-2.text-center
             p 
               strong 酬劳
           div.col-md-10
-            p #{ task.reward }
+            p #{ reward }
 
           if isExecutant task.executant
             div.col-md-2.text-center
@@ -47,7 +47,7 @@ template(name='oneTaskContent')
             p 
               strong 申请人
           div.col-md-10
-            each task.applicantsAndReasons
+            each applicantsAndReasons
               div.media.applicants.alert-info.alert
                 div.media-left
                   a(href='#') 
@@ -59,20 +59,20 @@ template(name='oneTaskContent')
                   if isPublisher task.createdBy
                     button.btn.btn-info.btn-sm.pull-right 同意
 
-    if canBeApply task
-      div
-        p
-          strong 申请理由
-      div.editor
-        textarea.form-control(id="edit" name="content")
+    //- if canBeApply task
+    //-   div
+    //-     p
+    //-       strong 申请理由
+    //-   div.editor
+    //-     textarea.form-control(id="edit" name="content")
 
-    div.operation-btns
-      if isAdmin
-        button.btn.btn-primary.pull-right 删除任务
-      else
-        if canBeApply task
-          button.btn.btn-primary.pull-right 申请任务
-        if isExecutant task.executant
-          button.btn.btn-primary.pull-right 申请完成
-        if isPublisher task.createdBy
-          button.btn.btn-primary.pull-right 取消发布
+    //- div.operation-btns
+    //-   if isAdmin
+    //-     button.btn.btn-primary.pull-right 删除任务
+    //-   else
+    //-     if canBeApply task
+    //-       button.btn.btn-primary.pull-right 申请任务
+    //-     if isExecutant task.executant
+    //-       button.btn.btn-primary.pull-right 申请完成
+    //-     if isPublisher task.createdBy
+    //-       button.btn.btn-primary.pull-right 取消发布

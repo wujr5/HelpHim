@@ -11,8 +11,8 @@ Router.route '/home', !->
 Router.route '/newsList', !->
   @render 'newsList'
 
-Router.route '/oneTask', !->
-  @render 'oneTask'
+Router.route '/oneTask/:_id', !->
+  @render 'oneTask', {data: -> AllTasks.findOne({_id: @params._id})}
 
 Router.route '/publishTask', !->
   @render 'publishTask'

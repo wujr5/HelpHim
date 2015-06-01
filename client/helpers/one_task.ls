@@ -3,8 +3,6 @@
 #   @$('.froala-box').children().eq(2).remove()
 
 Template.oneTaskContent.helpers do
-  task: ->
-    AllTasks.findOne!
   isExecutant: (executant)->
     Meteor.user().username == executant
   isPublisher: (publisher)->
@@ -16,9 +14,9 @@ Template.oneTaskContent.helpers do
       return true
     false
   userImageSrc: (name)->
-    'images/hd.jpg'
-    # console.log Meteor.users.findOne({username: name}).profileImage
-    # Meteor.users.findOne({username: name}).profileImage
+    # '/images/hd.jpg'
+    console.log Meteor.users.findOne({username: name}).profileImage
+    Meteor.users.findOne({username: name}).profileImage
 
 Template.oneTaskContent.events do
   'click #edit': !->
