@@ -21,7 +21,8 @@ Template.oneTaskContent.helpers do
   canBeApply: (task)->    
     if task.executant == null and task.deadline > (new Date()) and task.createdBy != Meteor.user().username
       flag = true
-      task.applicantsAndReasons.forEach (each)!->
+      if task.applicantsAndReasons
+        task.applicantsAndReasons.forEach (each)!->
         if each.name == Meteor.user().username
           flag := false
       flag
@@ -39,6 +40,14 @@ Template.oneTaskContent.events do
     $('.froala-box').children().eq(2).remove()
 
   'click .select-excutant': !->
-    console.log 'wujiarong'
-    console.log this
-    console.log AllTasks.findOne({_id: this._id})
+    console.log AllTasks.findOne({_id: Session.get('oneTaskId')})
+
+  'click .apply-task': !->
+    if $('.apply-reason')[0].value is ''
+      $('.apply-task-warn').remove-class 'sr-only'
+    else
+      apply-reason = $('.apply-reason')[0].value
+      console.log AllTasks.update({_id: Session.get('oneTaskId')}, {$push: applicantsAndReasons: {name: 'wujiarong', reason: apply-reason}})
+
+  'click .froala-box': !->
+    $('.apply-task-warn').add-class 'sr-only'
