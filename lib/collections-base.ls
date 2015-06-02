@@ -12,7 +12,7 @@
 #       createdBy: '吴家荣'
 #       createdAt: new Date()
 #       reward: '一顿麦当劳！'
-#       applicantsAndReasons: [{name: '张三元', reason: '我能在10分钟内拿给你', taskId: this._id}, {name: '李四元', reason: '我很帅',  taskId: this._id}, {name: '王五元', reason: '我在图书馆，可以跟你一起回去', taskId: this._id}]
+#       applicantsAndReasons: [{name: '张三元', reason: '我能在10分钟内拿给你'}, {name: '李四元', reason: '我很帅'}, {name: '王五元', reason: '我在图书馆，可以跟你一起回去'}]
 #       executant: '张三元'
 #       deadline: new Date('06/19/2015 10:32 AM')
 #       contact: '13800138000'
@@ -25,7 +25,7 @@
 #       createdBy: '李六元'
 #       createdAt: new Date()
 #       reward: '交个朋友'
-#       applicantsAndReasons: [{name: '张三元', reason: '我愿意帮忙', taskId: "jvYXmhooGxX2YkWDp"}, {name: '李四元', reason: '很乐意', taskId: "jvYXmhooGxX2YkWDp"}, {name: '王五元', reason: '让我帮你吧', taskId: "jvYXmhooGxX2YkWDp"}]
+#       applicantsAndReasons: [{name: '张三元', reason: '我愿意帮忙'}, {name: '李四元', reason: '很乐意'}, {name: '王五元', reason: '让我帮你吧'}]
 #       executant: null
 #       deadline: new Date('06/18/2015 8:44 PM')
 #       contact: '10086'
@@ -38,7 +38,7 @@
 #       createdBy: '张三元'
 #       createdAt: new Date()
 #       reward: '20元'
-#       applicantsAndReasons: [{name: '李六元', reason: '我是软院的，很厉害的哦', taskId: "nChQR84kBvsRJHeES"}, {name: '李四元', reason: '小意思，10分钟搞定', taskId: "nChQR84kBvsRJHeES"}, {name: '王五元', reason: '我想试试', taskId: "nChQR84kBvsRJHeES"}]
+#       applicantsAndReasons: [{name: '李六元', reason: '我是软院的，很厉害的哦'}, {name: '李四元', reason: '小意思，10分钟搞定'}, {name: '王五元', reason: '我想试试'}]
 #       executant: null
 #       deadline: new Date('06/24/2015 8:44 PM')
 #       contact: '13800138000'
