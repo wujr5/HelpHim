@@ -5,7 +5,7 @@ Template.publishTask.onRendered !->
   $('#edit').editable({
     inlineMode: false,
     useFrTag: true,
-    height: 200,
+    minHeight: 200,
     toolbarFixed: false,
     placeholder: 'Please describe your mission in detail here...',
     buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'fontSize', 'fontFamily', 'color', 'formatBlock', 'blockStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'outdent', 'indent', 'createLink', 'insertImage', 'insertVideo', 'uploadFile', 'table', 'undo', 'redo', 'html', 'fullscreen']
@@ -56,13 +56,3 @@ Template.publishTask.events do
         state: '无执行者且未完成'
     AllTasks.insert task
     Router.go '/home'
-
-#  富文本编辑器内容展示方法
-
-#  eg:
-
-#  div.froala-view#showbox
-
-#  task = AllTasks.find().fetch()[1]
-
-#  $('#showbox').html(task.description)

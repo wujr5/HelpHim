@@ -2,10 +2,11 @@ template(name='taskListItem')
   div.col-md-11
     div.panel.panel-default
       div.panel-heading
-        p.pull-right
-          span.label.label-warning 截止时间 
-          | {{deadline.toLocaleString}}
-
+        if isNotOverdue deadline
+          p.pull-right
+            span.label.label-warning 距离任务截止时间还有
+            span.label.label-danger {{GetDateDiff deadline}}
+            span.label.label-warning 天
         div.panel-title 
           span.glyphicon.glyphicon-file
           | {{title}}
