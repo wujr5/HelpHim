@@ -13,7 +13,7 @@ Template.oneTaskContent.helpers do
     Meteor.user().username == name
 
   isPublisher: (task)->
-    Meteor.user().username == task.publisher and task.executant == null
+    Meteor.user().username == task.createdBy and task.executant == null
 
   isAdmin: ->
     Meteor.user().username == 'admin'
@@ -37,3 +37,8 @@ Template.oneTaskContent.events do
   'click #edit': !->
     $('#edit').editable({inlineMode: false})
     $('.froala-box').children().eq(2).remove()
+
+  'click .select-excutant': !->
+    console.log 'wujiarong'
+    console.log this
+    console.log AllTasks.findOne({_id: this._id})
