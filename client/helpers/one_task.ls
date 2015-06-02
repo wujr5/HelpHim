@@ -1,7 +1,3 @@
-# Template.oneTaskContent.onRendered !->
-#   @$('#edit').editable({inlineMode: false})
-#   @$('.froala-box').children().eq(2).remove()
-
 Template.oneTaskContent.helpers do
   task: ->
     _id = Session.get 'oneTaskId'
@@ -14,19 +10,19 @@ Template.oneTaskContent.helpers do
       task.executant == name
 
   isSelf: (name)->
-    console.log name
     Meteor.user().username == name
 
   isPublisher: (task)->
-    Meteor.user().username == task.publisher and task.executant == null
+    Meteor.user().username == task.createdBy and task.executant == null
 
   isAdmin: ->
     Meteor.user().username == 'admin'
 
-  canBeApply: (task)->    
+  canBeApply: (task)->
     if task.executant == null and task.deadline > (new Date()) and task.createdBy != Meteor.user().username
       flag = true
-      task.applicantsAndReasons.forEach (each)!->
+      for i from 0 to task.applicantsAndReasons.length - 1
+        each = task.applicantsAndReasons[i]
         if each.name == Meteor.user().username
           flag := false
       flag
@@ -42,3 +38,16 @@ Template.oneTaskContent.events do
   'click #edit': !->
     $('#edit').editable({inlineMode: false})
     $('.froala-box').children().eq(2).remove()
+
+  'click .select-excutant': !->
+    AllTasks.update({_id: Session.get('oneTaskId')}, {$set: {executant: this.name}})
+
+  'click .apply-task': !->
+    if $('.apply-reason')[0].value is ''
+      $('.apply-task-warn').remove-class 'sr-only'
+    else
+      apply-reason = $('.apply-reason')[0].value
+      AllTasks.update({_id: Session.get('oneTaskId')}, {$push: applicantsAndReasons: {name: Meteor.user().username, reason: apply-reason}})
+
+  'click .froala-box': !->
+    $('.apply-task-warn').add-class 'sr-only'
