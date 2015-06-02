@@ -4,37 +4,37 @@ Template.taskList.helpers do
     # 全部
     if Session.get("_home_sortBy") is "All"
       if Session.get "_isShowOverdue"
-        return AllTasks.find {}
+        return AllTasks.find {},{sort:{createdAt:-1}}
       else
-        return AllTasks.find {deadline:{$gte:new Date()}}
+        return AllTasks.find {deadline:{$gte:new Date()}},{sort:{createdAt:-1}}
 
     # 学习
     if Session.get("_home_sortBy") is "Study"
       if Session.get "_isShowOverdue"
-        return AllTasks.find {type: '学习'}
+        return AllTasks.find {type: '学习'},{sort:{createdAt:-1}}
       else
-        return AllTasks.find {type: '学习', deadline:{$gte:new Date()}}
+        return AllTasks.find {type: '学习', deadline:{$gte:new Date()}},{sort:{createdAt:-1}}
 
     # 生活
     if Session.get("_home_sortBy") is "Life"
       if Session.get "_isShowOverdue"
-        return AllTasks.find {type: '生活'}
+        return AllTasks.find {type: '生活'},{sort:{createdAt:-1}}
       else
-        return AllTasks.find {type: '生活', deadline:{$gte:new Date()}}
+        return AllTasks.find {type: '生活', deadline:{$gte:new Date()}},{sort:{createdAt:-1}}
 
     # 娱乐
     if Session.get("_home_sortBy") is "Entertainment"
       if Session.get "_isShowOverdue"
-        return AllTasks.find {type: '娱乐'}
+        return AllTasks.find {type: '娱乐'},{sort:{createdAt:-1}}
       else
-        return AllTasks.find {type: '娱乐', deadline:{$gte:new Date()}}
+        return AllTasks.find {type: '娱乐', deadline:{$gte:new Date()}},{sort:{createdAt:-1}}
 
     # 其他
     if Session.get("_home_sortBy") is "Others"
       if Session.get "_isShowOverdue"
-        return AllTasks.find {type: '其他'}
+        return AllTasks.find {type: '其他'},{sort:{createdAt:-1}}
       else
-        return AllTasks.find {type: '其他', deadline:{$gte:new Date()}}
+        return AllTasks.find {type: '其他', deadline:{$gte:new Date()}},{sort:{createdAt:-1}}
 
 Template.taskList.events do
   'change .show-overdue input': !->
