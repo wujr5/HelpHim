@@ -16,7 +16,6 @@
 #       executant: '张三元'
 #       deadline: new Date('06/19/2015 10:32 AM')
 #       contact: '13800138000'
-#       state: '待完成' # state: 三种状态：已完成，申请完成，待完成，未完成
 #     }
 #     AllTasks.insert {
 #       title: '新生报到，请求搬行李'
@@ -29,7 +28,6 @@
 #       executant: null
 #       deadline: new Date('06/18/2015 8:44 PM')
 #       contact: '10086'
-#       state: '未完成'
 #     }
 #     AllTasks.insert {
 #       title: '电脑崩了，求重装系统'
@@ -42,7 +40,6 @@
 #       executant: null
 #       deadline: new Date('06/24/2015 8:44 PM')
 #       contact: '13800138000'
-#       state: '未完成'
 #     }
 
 # # 用来测试的用户
@@ -52,3 +49,5 @@
 # # 李四元 3@qq.com 111111
 # # 王五元 4@qq.com 111111
 # # 李六元 5@qq.com 111111
+# # b = a.toLocaleDateString()
+# # b.replace(new RegExp('/',"gm"),'-')
