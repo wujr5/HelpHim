@@ -18,11 +18,11 @@ Template.oneTaskContent.helpers do
   isAdmin: ->
     Meteor.user().username == 'admin'
 
-  canBeApply: (task)->    
+  canBeApply: (task)->
     if task.executant == null and task.deadline > (new Date()) and task.createdBy != Meteor.user().username
       flag = true
-      if task.applicantsAndReasons
-        task.applicantsAndReasons.forEach (each)!->
+      for i from 0 to task.applicantsAndReasons.length - 1
+        each = task.applicantsAndReasons[i]
         if each.name == Meteor.user().username
           flag := false
       flag
@@ -40,14 +40,14 @@ Template.oneTaskContent.events do
     $('.froala-box').children().eq(2).remove()
 
   'click .select-excutant': !->
-    console.log AllTasks.findOne({_id: Session.get('oneTaskId')})
+    AllTasks.update({_id: Session.get('oneTaskId')}, {$set: {executant: this.name}})
 
   'click .apply-task': !->
     if $('.apply-reason')[0].value is ''
       $('.apply-task-warn').remove-class 'sr-only'
     else
       apply-reason = $('.apply-reason')[0].value
-      console.log AllTasks.update({_id: Session.get('oneTaskId')}, {$push: applicantsAndReasons: {name: 'wujiarong', reason: apply-reason}})
+      AllTasks.update({_id: Session.get('oneTaskId')}, {$push: applicantsAndReasons: {name: Meteor.user().username, reason: apply-reason}})
 
   'click .froala-box': !->
     $('.apply-task-warn').add-class 'sr-only'

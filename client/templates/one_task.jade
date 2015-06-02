@@ -62,7 +62,7 @@ template(name='oneTaskContent')
                 div.media-body
                   a
                     h4.media-heading #{ name }
-                  div.col-md-10.reason #{ reason }
+                  div.col-md-10.reason!= reason
                   if isPublisher task
                     button.btn.btn-info.btn-sm.pull-right.select-excutant 同意
 
