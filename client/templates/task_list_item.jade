@@ -4,11 +4,15 @@ template(name='taskListItem')
       div.panel-heading
         p.pull-right
           span.label.label-warning 截止时间 
-          {{deadline.toLocaleString}}
-        div.panel-title {{title}}
+          | {{deadline.toLocaleString}}
+        div.panel-title 
+          span.glyphicon.glyphicon-file
+          | {{title}}
+          if isOverdue deadline
+            span.label.label-danger 过期
       div.panel-body
         p!= description
         a.btn.btn-info.btn-sm.pull-right(href='/oneTask/{{_id}}') 查看任务
       div.panel-footer 
-        span.label.label-danger 报酬
-        {{reward}}
+        span.label.label-success 报酬
+        | {{reward}}
