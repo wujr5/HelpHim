@@ -11,7 +11,8 @@ Router.route '/home', !->
 Router.route '/newsList', !->
   @render 'newsList'
 
-Router.route '/oneTask', !->
+Router.route '/oneTask/:_id', !->
+  Session.set "oneTaskId", @params._id
   @render 'oneTask'
 
 Router.route '/publishTask', !->

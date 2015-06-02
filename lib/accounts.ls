@@ -5,10 +5,11 @@ if Meteor.isClient
 else
   Accounts.onCreateUser (options, user)->
     extra = {
-      profileImage: 'images/hd.jpg'
+      profileImage: '/images/hd.jpg'
       news: [{type: 'applicant', content: '张三申请xxx任务', taskId: 'XXX'}]
       proficiency : 0
       credit : 0
+      myApplications: []
     }
     user <<< extra
     if options.profile
