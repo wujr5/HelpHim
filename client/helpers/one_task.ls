@@ -1,7 +1,3 @@
-# Template.oneTaskContent.onRendered !->
-#   @$('#edit').editable({inlineMode: false})
-#   @$('.froala-box').children().eq(2).remove()
-
 Template.oneTaskContent.helpers do
   task: ->
     _id = Session.get 'oneTaskId'
@@ -14,7 +10,6 @@ Template.oneTaskContent.helpers do
       task.executant == name
 
   isSelf: (name)->
-    console.log name
     Meteor.user().username == name
 
   isPublisher: (task)->
