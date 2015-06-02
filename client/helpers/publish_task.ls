@@ -49,13 +49,11 @@ Template.publishTask.events do
         createdBy: Meteor.user!.username
         createdAt: Date.now!
         reward: ev.target.reward.value
-        applicantsAndReasons: []
+        applicationReasons: null
         executant: null
         deadline: new Date ev.target.deadline.value
         contact: ev.target.contact.value
-        state: '无执行者且未完成'
     AllTasks.insert task
-    Router.go '/home'
 
 #  富文本编辑器内容展示方法
 

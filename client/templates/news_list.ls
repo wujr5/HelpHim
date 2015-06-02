@@ -1,3 +1,3 @@
 Template.newsList.helpers {
-    newsList: -> Users.findOne!.news
+    newsList: -> Meteor.user!.news
 }
