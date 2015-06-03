@@ -12,8 +12,11 @@ Template.oneTaskContent.helpers do
   isSelf: (name)->
     Meteor.user().username == name
 
-  isPublisher: (task)->
-    Meteor.user().username == task.createdBy and task.executant == null
+  isPublisher: (task, type)->
+    if type == 'select-excutant'
+      Meteor.user().username == task.createdBy and task.executant == null
+    else if type == 'publish-task-or-not'
+      task.state == '未完成' or task.state == '待完成' or task.state == '申请完成' and task.state != '已完成'
 
   isAdmin: ->
     Meteor.user().username == 'admin'
@@ -55,4 +58,14 @@ Template.oneTaskContent.events do
   'click .delete-task': !->
     _id = Session.get 'oneTaskId'
     AllTasks.remove _id
+    Router.go '/home'
+
+  'click .cancel-publish': !->
+    _id = Session.get 'oneTaskId'
+    AllTasks.update {_id: _id}, {$set: {state: '已取消', executant: null, applicantsAndReasons: []}}
+    Router.go '/home'
+
+  'click .re-publish': !->
+    _id = Session.get 'oneTaskId'
+    AllTasks.update {_id: _id}, {$set: {state: '未完成'}}
     Router.go '/home'

@@ -29,7 +29,7 @@ template(name='oneTaskContent')
             p 
               strong 描述
           div.col-md-10
-            p!= task.description
+            p.well!= task.description
 
           div.col-md-2.text-center
             p 
@@ -67,7 +67,7 @@ template(name='oneTaskContent')
                       if isSelf name
                         span.label.label-info 我
                   div.col-md-10.reason!= reason
-                  if isPublisher task
+                  if isPublisher task 'select-excutant'
                     button.btn.btn-info.btn-sm.pull-right.select-excutant 同意
 
     if canBeApply task
@@ -89,5 +89,7 @@ template(name='oneTaskContent')
         if isExecutant task task.executant 'current-user'
           button.btn.btn-primary.pull-right 申请完成
 
-        if isPublisher task
-          button.btn.btn-primary.pull-right 取消发布
+        if isPublisher task 'publish-task-or-not'
+          button.btn.btn-primary.pull-right.cancel-publish 取消发布
+        else
+          button.btn.btn-primary.pull-right.re-publish 重新发布
