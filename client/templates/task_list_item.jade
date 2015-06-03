@@ -2,18 +2,27 @@ template(name='taskListItem')
   div.col-md-11
     div.panel.panel-default
       div.panel-heading
-
-        if isOverdue deadline
-          p.pull-right
-            span.label.label-danger 过期
-            span.label.label-info {{state}}
-        else if isTaskUnfinish state
-          p.pull-right
-            span.label.label-warning 距离任务截止时间还有
-            span.label.label-danger {{GetDateDiff deadline}}
-            span.label.label-warning 天
+        
+        if isHomePage
+          if isOverdue deadline
+            p.pull-right
+              span.label.label-danger 过期
+              span.label.label-info {{state}}
+          else if isTaskUnfinish state
+            p.pull-right
+              span.label.label-warning 距离任务截止时间还有
+              span.label.label-danger {{GetDateDiff deadline}}
+              span.label.label-warning 天
+          else
+            span.label.label-info.pull-right {{state}}
         else
-          span.label.label-info.pull-right {{state}}
+          if isOverdue deadline
+            span.label.label-danger.pull-right 过期
+          else
+            p.pull-right
+              span.label.label-warning 距离任务截止时间还有
+              span.label.label-danger {{GetDateDiff deadline}}
+              span.label.label-warning 天
 
         div.panel-title 
           span.glyphicon.glyphicon-file
