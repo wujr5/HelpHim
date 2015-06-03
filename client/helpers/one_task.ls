@@ -8,6 +8,8 @@ Template.oneTaskContent.helpers do
       Meteor.user().username == name
     else if role == 'applicant'
       task.executant == name
+    else if role == 'current-user-or-publisher'
+      task.executant == name or task.createdBy == Meteor.user().username
 
   isSelf: (name)->
     Meteor.user().username == name
@@ -16,7 +18,7 @@ Template.oneTaskContent.helpers do
     if type == 'select-excutant'
       Meteor.user().username == task.createdBy and task.executant == null
     else if type == 'cancle-publish-task'
-      (task.state == '未完成' or task.state == '待完成' or task.state == '申请完成') and task.state != '已完成'
+      (task.state == '未完成' or task.state == '待完成' or task.state == '申请完成') and task.state != '已完成' and task.createdBy == Meteor.user().username
     else if type == 're-publish-task'
       task.state == '已取消' and task.deadline > (new Date())
 
@@ -33,6 +35,12 @@ Template.oneTaskContent.helpers do
       flag
     else
       false
+
+  getCredit: (name)->
+    Meteor.users.findOne({username: name}).credit
+
+  getProficiency: (name)->
+    Meteor.users.findOne({username: name}).proficiency
 
   userImageSrc: (name)->
     '/images/hd.jpg'

@@ -43,7 +43,7 @@ template(name='oneTaskContent')
           div.col-md-10
             p #{ task.reward }
 
-          if isExecutant task task.executant 'current-user'
+          if isExecutant task task.executant 'current-user-or-publisher'
             div.col-md-2.text-center.contact
               p.label.label-warning 
                 strong 联系方式
@@ -60,12 +60,13 @@ template(name='oneTaskContent')
                   a(href='#') 
                     img.media-object(src = '{{userImageSrc name}}')
                 div.media-body
-                  a
-                    h4.media-heading #{ name }
-                      if isExecutant task name 'applicant'
-                        span.label.label-success 执行者
-                      if isSelf name
-                        span.label.label-info 我
+                  h4.media-heading #{ name }
+                    span.label.label-default.credit 信誉度: {{getCredit name}}
+                    span.label.label-default 熟练度: {{getProficiency name}}
+                    if isExecutant task name 'applicant'
+                      span.label.label-success 执行者
+                    if isSelf name
+                      span.label.label-info 我
                   div.col-md-10.reason!= reason
                   if isPublisher task 'select-excutant'
                     button.btn.btn-info.btn-sm.pull-right.select-excutant 同意
@@ -91,5 +92,6 @@ template(name='oneTaskContent')
 
         if isPublisher task 'cancle-publish-task'
           button.btn.btn-primary.pull-right.cancel-publish 取消发布
+
         if isPublisher task 're-publish-task'
           button.btn.btn-primary.pull-right.re-publish 重新发布
