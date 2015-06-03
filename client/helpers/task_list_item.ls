@@ -9,6 +9,9 @@ Template.taskListItem.helpers do
   isMyTaskPage: ->
     return Session.get("_Page") == "myTask"
 
+  isTaskUnfinish: (state) ->
+    return state == "未完成" ? true : false
+
   GetDateDiff: (deadline) ->
     now_time = (new Date!).getTime!
     deadline_time = deadline.getTime!
