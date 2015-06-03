@@ -1,11 +1,13 @@
 Router.route '/', !->
   Session.set "_home_sortBy", "All"
   Session.set "_isShowOverdue", false
+  Session.set "_Page", "home"
   @render 'home'
 
 Router.route '/home', !->
   Session.set "_home_sortBy", "All"
   Session.set "_isShowOverdue", false
+  Session.set "_Page", "home"
   @render 'home'
 
 Router.route '/newsList', !->
@@ -21,4 +23,5 @@ Router.route '/publishTask', !->
 Router.route '/myTask', !->
   Session.set "_myTask_sortBy", "All"
   Session.set "_myTask_PublishOrApply", "default"
+  Session.set "_Page", "myTask"
   @render 'myTask'

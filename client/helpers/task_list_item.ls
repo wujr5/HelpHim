@@ -6,8 +6,14 @@ Template.taskListItem.helpers do
   isOverdue: (deadline) ->
     return deadline < new Date() ? true : false
 
-  isNotOverdue: (deadline) ->
-    return deadline >= new Date() ? true : false
+  isMyTaskPage: ->
+    return Session.get("_Page") == "myTask"
+
+  isHomePage: ->
+    return Session.get("_Page") == "home"
+
+  isTaskUnfinish: (state) ->
+    return state == "未完成" ? true : false
 
   GetDateDiff: (deadline) ->
     now_time = (new Date!).getTime!

@@ -53,6 +53,6 @@ Template.publishTask.events do
         executant: null
         deadline: new Date ev.target.deadline.value
         contact: ev.target.contact.value
-        state: '无执行者且未完成'
+        state: '未完成'
     AllTasks.insert task
     Router.go '/home'
