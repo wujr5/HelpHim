@@ -1,3 +1,16 @@
+Template.oneTaskContent.onRendered !->
+  $('#edit').on 'editable.getHTML', (e, editor, html)!->
+    $ '#edit' .html html
+  $('#edit').editable({
+    inlineMode: false,
+    useFrTag: true,
+    toolbarFixed: false,
+    placeholder: 'Please describe your mission in detail here...',
+    buttons: ['bold', 'italic', 'underline', 'strikeThrough', 'fontSize', 'fontFamily', 'color', 'formatBlock', 'blockStyle', 'align', 'insertOrderedList', 'insertUnorderedList', 'outdent', 'indent', 'createLink', 'insertImage', 'insertVideo', 'uploadFile', 'table', 'undo', 'redo', 'html', 'fullscreen']
+    })
+  $('.froala-box').children().eq(2).remove()
+
+
 Template.oneTaskContent.helpers do
   task: ->
     _id = Session.get 'oneTaskId'
@@ -9,7 +22,7 @@ Template.oneTaskContent.helpers do
     else if role == 'applicant'
       task.executant == name
     else if role == 'current-user-or-publisher'
-      task.executant == name or task.createdBy == Meteor.user().username
+      Meteor.user().username == name or task.createdBy == Meteor.user().username
 
   isSelf: (name)->
     Meteor.user().username == name
@@ -20,7 +33,7 @@ Template.oneTaskContent.helpers do
     else if type == 'cancle-publish-task'
       (task.state == '未完成' or task.state == '待完成' or task.state == '申请完成') and task.state != '已完成' and task.createdBy == Meteor.user().username
     else if type == 're-publish-task'
-      task.state == '已取消' and task.deadline > (new Date())
+      task.state == '已取消' and task.deadline > (new Date()) and task.createdBy == Meteor.user().username
 
   isAdmin: ->
     Meteor.user().username == 'admin'
@@ -32,6 +45,7 @@ Template.oneTaskContent.helpers do
         each = task.applicantsAndReasons[i]
         if each.name == Meteor.user().username
           flag := false
+
       flag
     else
       false
@@ -48,18 +62,15 @@ Template.oneTaskContent.helpers do
     # Meteor.users.findOne({username: name}).profileImage
 
 Template.oneTaskContent.events do
-  'click #edit': !->
-    $('#edit').editable({inlineMode: false})
-    $('.froala-box').children().eq(2).remove()
 
   'click .select-excutant': !->
     AllTasks.update({_id: Session.get('oneTaskId')}, {$set: {executant: this.name}})
 
   'click .apply-task': !->
-    if $('.apply-reason')[0].value is ''
+    apply-reason = $('.froala-view.froala-element').html()
+    if apply-reason is ''
       $('.apply-task-warn').remove-class 'sr-only'
     else
-      apply-reason = $('.froala-view.froala-element').html()
       AllTasks.update({_id: Session.get('oneTaskId')}, {$push: applicantsAndReasons: {name: Meteor.user().username, reason: apply-reason}})
 
   'click .froala-box': !->
