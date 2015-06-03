@@ -46,8 +46,13 @@ Template.oneTaskContent.events do
     if $('.apply-reason')[0].value is ''
       $('.apply-task-warn').remove-class 'sr-only'
     else
-      apply-reason = $('.apply-reason')[0].value
+      apply-reason = $('.froala-view.froala-element').html()
       AllTasks.update({_id: Session.get('oneTaskId')}, {$push: applicantsAndReasons: {name: Meteor.user().username, reason: apply-reason}})
 
   'click .froala-box': !->
     $('.apply-task-warn').add-class 'sr-only'
+
+  'click .delete-task': !->
+    _id = Session.get 'oneTaskId'
+    AllTasks.remove _id
+    Router.go '/home'
