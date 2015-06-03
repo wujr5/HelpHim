@@ -89,7 +89,7 @@ template(name='oneTaskContent')
         if isExecutant task task.executant 'current-user'
           button.btn.btn-primary.pull-right 申请完成
 
-        if isPublisher task 'publish-task-or-not'
+        if isPublisher task 'cancle-publish-task'
           button.btn.btn-primary.pull-right.cancel-publish 取消发布
-        else
+        if isPublisher task 're-publish-task'
           button.btn.btn-primary.pull-right.re-publish 重新发布
