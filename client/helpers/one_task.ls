@@ -15,8 +15,10 @@ Template.oneTaskContent.helpers do
   isPublisher: (task, type)->
     if type == 'select-excutant'
       Meteor.user().username == task.createdBy and task.executant == null
-    else if type == 'publish-task-or-not'
-      task.state == '未完成' or task.state == '待完成' or task.state == '申请完成' and task.state != '已完成'
+    else if type == 'cancle-publish-task'
+      (task.state == '未完成' or task.state == '待完成' or task.state == '申请完成') and task.state != '已完成'
+    else if type == 're-publish-task'
+      task.state == '已取消' and task.deadline > (new Date())
 
   isAdmin: ->
     Meteor.user().username == 'admin'
