@@ -2,7 +2,9 @@ template(name='taskListItem')
   div.col-md-11
     div.panel.panel-default
       div.panel-heading
-        if isNotOverdue deadline
+        if isOverdue deadline
+          span.label.label-danger.pull-right 过期
+        else
           p.pull-right
             span.label.label-warning 距离任务截止时间还有
             span.label.label-danger {{GetDateDiff deadline}}
@@ -10,8 +12,9 @@ template(name='taskListItem')
         div.panel-title 
           span.glyphicon.glyphicon-file
           | {{title}}
-          if isOverdue deadline
-            span.label.label-danger 过期
+
+          if isMyTaskPage
+            span.label.label-info {{state}}
 
       div.panel-body
         p!= description
