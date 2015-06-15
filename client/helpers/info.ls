@@ -36,3 +36,4 @@ Template.info.events do
   "submit form": (e) ->
     e.prevent-default!
     Router.go '/home'
+

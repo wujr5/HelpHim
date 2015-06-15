@@ -3,14 +3,14 @@ template(name='newsListItem')
     div.news-box
       if unread
         span.unread-red-dot
-            | 新
+          | 新
       div.panel(class="panel-#{content.style}")
         div.panel-heading
           .row
-              .col-md-11
-                  if title
-                      |#{title}
-                  else
-                      |#{content.title}
+            .col-md-11
+              if title
+                |#{title}
+              else
+                |#{content.title}
         div.panel-body {{ content.info }}
-          a.btn.btn-info.btn-sm.pull-right(href="/oneTask/#{taskId}") 详细
+          a.btn.btn-info.btn-sm.pull-right.detail(href="/oneTask/#{taskId}") 详细

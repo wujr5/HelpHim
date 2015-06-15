@@ -13,5 +13,5 @@ else
     }
     user <<< extra
     if options.profile
-      user.profile = options.profile;
+      user.profile = options.profile
     user

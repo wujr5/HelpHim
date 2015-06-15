@@ -64,16 +64,24 @@ Template.oneTaskContent.helpers do
 Template.oneTaskContent.events do
   # 选择执行者
   'click .select-excutant': !->
-    AllTasks.update({_id: Session.get('oneTaskId')}, {$set: {executant: this.name}})
-    
+    AllTasks.update({_id: Session.get('oneTaskId')}, {$set: {executant: this.name, state: '待完成'}})
+
+    applicantsAndReasons = AllTasks.findOne({_id: Session.get('oneTaskId')}).applicantsAndReasons
+
+    for i from 0 to applicantsAndReasons.length - 1
+
+      userId = Meteor.users.findOne({username: applicantsAndReasons[i].name})._id
+      Meteor.users.update({_id: userId}, {$push: news: {type: 'apply-result', content: null, taskId: Session.get('oneTaskId'), unread: true, newsId: new Date()}}, true)
 
   # 申请任务
   'click .apply-task': !->
     apply-reason = $('.froala-view.froala-element').html()
-    if apply-reason is ''
+    if apply-reason is '<p><br></p>'
       $('.apply-task-warn').remove-class 'sr-only'
     else
       AllTasks.update({_id: Session.get('oneTaskId')}, {$push: applicantsAndReasons: {name: Meteor.user().username, reason: apply-reason}})
+      userId = Meteor.users.findOne({username: AllTasks.findOne({_id: Session.get('oneTaskId')}).createdBy})._id
+      Meteor.users.update({_id: userId}, {$push: news: {type: 'apply-task', content: null, taskId: Session.get('oneTaskId'), unread: true, newsId: new Date()}})
 
   # 隐藏关于没有填写申请理由的提示信息
   'click .froala-box': !->
@@ -96,3 +104,11 @@ Template.oneTaskContent.events do
     _id = Session.get 'oneTaskId'
     AllTasks.update {_id: _id}, {$set: {state: '未完成'}}
     Router.go '/home'
+
+  'click .apply-complete': !->
+    AllTasks.update {_id: Session.get('oneTaskId')}, {$set: {state: '申请完成'}}
+    userId = Meteor.users.findOne({username: AllTasks.findOne({_id: Session.get('oneTaskId')}).createdBy })._id
+    Meteor.users.update({_id: userId}, {$push: news: {type: 'complete-confirm', content: null, taskId: Session.get('oneTaskId'), unread: true, newsId: new Date()}})
+
+    Router.go '/home'
+
