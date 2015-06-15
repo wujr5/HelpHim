@@ -1,0 +1,39 @@
+template(name='info')
+  div.container-fluid
+    div.row
+      +functionalArea
+
+      div.col-md-offset-3.col-md-9
+        div.page-header
+          h1 个人信息
+        form.form-horizontal
+          div.form-group.textbox
+            label.col-sm-1.control-label(for="uimg") 头像：
+            div.col-sm-10
+              div.preview
+                img.imghead(src="/images/hd.jpg" id="imagename")
+              if nochange
+                p
+                  注：修改信息可以修改头像哦
+              else
+                input(type="file" name="avatar" id="myimage")
+          div.form-group.textbox
+            label.col-sm-1.control-label(for="uname") 用户名:
+            div.col-sm-10
+              p.col-sm-1.control-label
+                strong #{ user.username }
+        
+          div.form-group.textbox
+            label.col-sm-1.control-label(for="uemail") 邮箱：
+            div.col-sm-10
+              p.col-sm-1.control-label
+                strong #{ user.email }
+          
+          if nochange
+            div.btn-group.col-md-9(data-toggle="buttons")
+              label.btn.btn-primary
+                input(type="radio" name="options" id="option" autocomplete="off")
+                | 修改信息
+          else
+            div.btn-group.col-md-9
+              button.btn.btn-primary(type='submit') 确定修改
