@@ -42,6 +42,7 @@ Template.publishTask.onRendered !->
 Template.publishTask.events do
   'submit': (ev, tpl)->
     ev.prevent-default!
+    
     task =
       * title: ev.target.title.value
         type: ev.target.taskType.value
@@ -54,5 +55,6 @@ Template.publishTask.events do
         deadline: new Date ev.target.deadline.value
         contact: ev.target.contact.value
         state: '未完成'
+
     AllTasks.insert task
     Router.go '/home'

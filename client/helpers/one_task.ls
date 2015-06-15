@@ -62,10 +62,12 @@ Template.oneTaskContent.helpers do
     # Meteor.users.findOne({username: name}).profileImage
 
 Template.oneTaskContent.events do
-
+  # 选择执行者
   'click .select-excutant': !->
     AllTasks.update({_id: Session.get('oneTaskId')}, {$set: {executant: this.name}})
+    
 
+  # 申请任务
   'click .apply-task': !->
     apply-reason = $('.froala-view.froala-element').html()
     if apply-reason is ''
@@ -73,19 +75,23 @@ Template.oneTaskContent.events do
     else
       AllTasks.update({_id: Session.get('oneTaskId')}, {$push: applicantsAndReasons: {name: Meteor.user().username, reason: apply-reason}})
 
+  # 隐藏关于没有填写申请理由的提示信息
   'click .froala-box': !->
     $('.apply-task-warn').add-class 'sr-only'
 
+  # 删除任务
   'click .delete-task': !->
     _id = Session.get 'oneTaskId'
     AllTasks.remove _id
     Router.go '/home'
 
+  # 取消发布
   'click .cancel-publish': !->
     _id = Session.get 'oneTaskId'
     AllTasks.update {_id: _id}, {$set: {state: '已取消', executant: null, applicantsAndReasons: []}}
     Router.go '/home'
 
+  # 重新发布
   'click .re-publish': !->
     _id = Session.get 'oneTaskId'
     AllTasks.update {_id: _id}, {$set: {state: '未完成'}}
