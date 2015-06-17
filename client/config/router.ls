@@ -2,6 +2,7 @@ Router.route '/', !->
   Session.set "_home_sortBy", "All"
   Session.set "_isShowOverdue", false
   Session.set "_Page", "home"
+  Session.set "_has_search", false
   @render 'home'
 
 Router.route '/home', !->

@@ -3,6 +3,9 @@ Template.taskList.helpers do
     
     # 全部
     if Session.get("_home_sortBy") is "All"
+      if Session.get "_has_search" and Session.get("_search_key") is not ""
+        searchKey = Session.get("_search_key")
+        return AllTasks.find({title:{$regex:searchKey}})
       if Session.get "_isShowOverdue"
         return AllTasks.find {state:{$nin:['已取消']}},{sort:{createdAt:-1}}
       else
@@ -10,6 +13,9 @@ Template.taskList.helpers do
 
     # 学习
     if Session.get("_home_sortBy") is "Study"
+      if Session.get "_has_search" and Session.get("_search_key") is not ""
+        searchKey = Session.get("_search_key")
+        return AllTasks.find({title:{$regex:searchKey}})
       if Session.get "_isShowOverdue"
         return AllTasks.find {type: '学习',state:{$nin:['已取消']}},{sort:{createdAt:-1}}
       else
@@ -17,6 +23,9 @@ Template.taskList.helpers do
 
     # 生活
     if Session.get("_home_sortBy") is "Life"
+      if Session.get "_has_search" and Session.get("_search_key") is not ""
+        searchKey = Session.get("_search_key")
+        return AllTasks.find({title:{$regex:searchKey}})
       if Session.get "_isShowOverdue"
         return AllTasks.find {type: '生活',state:{$nin:['已取消']}},{sort:{createdAt:-1}}
       else
@@ -24,6 +33,9 @@ Template.taskList.helpers do
 
     # 娱乐
     if Session.get("_home_sortBy") is "Entertainment"
+      if Session.get "_has_search" and Session.get("_search_key") is not ""
+        searchKey = Session.get("_search_key")
+        return AllTasks.find({title:{$regex:searchKey}})
       if Session.get "_isShowOverdue"
         return AllTasks.find {type: '娱乐',state:{$nin:['已取消']}},{sort:{createdAt:-1}}
       else
@@ -31,6 +43,9 @@ Template.taskList.helpers do
 
     # 其他
     if Session.get("_home_sortBy") is "Others"
+      if Session.get "_has_search" and Session.get("_search_key") is not ""
+        searchKey = Session.get("_search_key")
+        return AllTasks.find({title:{$regex:searchKey}})
       if Session.get "_isShowOverdue"
         return AllTasks.find {type: '其他',state:{$nin:['已取消']}},{sort:{createdAt:-1}}
       else
@@ -49,3 +64,6 @@ Template.taskList.events do
     Session.set "_home_sortBy", "Entertainment",
   'change \#option5': (event) !->
     Session.set "_home_sortBy", "Others",
+  'input \#search_key': !->
+    Session.set "_has_search", true
+    Session.set "_search_key", $('#search_key')[0].value

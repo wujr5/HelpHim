@@ -4,9 +4,9 @@ template(name='taskList')
     div.page-header.row
       h1.col-md-7 任务列表
       div.input-group.col-md-4.search
-        input.form-control(type="text" placeholder="Search for...")
+        input.form-control(type="text" id="search_key" placeholder="Search for...")
         span.input-group-btn
-          button.btn.btn-default(type="button") Search
+          button.btn.btn-default(type="button" id="search_button") Search
     div.row
       div.btn-group.col-md-9.sort-by(data-toggle="buttons")
         label.btn.btn-primary.active.test
