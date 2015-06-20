@@ -35,5 +35,7 @@ Template.info.events do
       $ '#imagename' .attr 'src', reader.result
   "submit form": (e) ->
     e.prevent-default!
+    avatar = $(e.target).find('[name=avatar]')[0].files
+    UploadAvatar.insert avatar
     Router.go '/home'
 
