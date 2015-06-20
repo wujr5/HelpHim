@@ -11,7 +11,11 @@ template(name='info')
             label.col-sm-1.control-label(for="uimg") 头像：
             div.col-sm-10
               div.preview
-                img.imghead(src="/images/hd.jpg" id="imagename")
+                if noimage
+                  img.imghead(src="/images/hd.jpg" id="imagename")
+                else
+                  each userInfo
+                    img.imghead(src="{{this.url}}" id="imagename")
               if nochange
                 p
                   | 注：修改信息可以修改头像哦

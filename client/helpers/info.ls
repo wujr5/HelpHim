@@ -17,6 +17,14 @@ Template.info.helpers do
       true
     else
       false
+  userInfo: ->
+        avatar = null
+        if Meteor.user!
+            avatarid = Meteor.users.findOne({_id:Meteor.userId()}).avarId
+            avatar = UploadAvatar.findbyid avatarid
+        avatar
+  noimage: ->
+        Meteor.user().avarId == null
 
 Template.info.events do
   'change \#option': (event) !->
