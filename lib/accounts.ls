@@ -10,7 +10,7 @@ else
       proficiency : 0
       credit : 0
       myApplications: []
-      avarId: NULL
+      avarId: null
     }
     user <<< extra
     if options.profile
