@@ -2,7 +2,11 @@ template(name='functionalArea')
   div.col-md-3.function-area.text-center
     div.profile
       a(href='/info')
-        img.img-circle(src='/images/hd.jpg')
+        if noimage
+          img.img-circle(src="/images/hd.jpg")
+        else
+          each userInfo
+            img.img-circle(src="{{this.url}}", alt="avatar")
       h4 
         a
           +loginButtons

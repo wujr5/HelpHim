@@ -6,4 +6,11 @@ Template.functionalArea.helpers do
       if news[i].unread == true
         count++
     count
-
+  userInfo: ->
+        avatar = null
+        if Meteor.user!
+            avatarid = Meteor.users.fineOne({_id:Meteor.userId()}).avarId
+            avatar = UploadAvatar.findbyid avatarid
+        avatar
+  noimage: ->
+        true
