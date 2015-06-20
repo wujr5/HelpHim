@@ -9,8 +9,8 @@ Template.functionalArea.helpers do
   userInfo: ->
         avatar = null
         if Meteor.user!
-            avatarid = Meteor.users.fineOne({_id:Meteor.userId()}).avarId
+            avatarid = Meteor.users.findOne({_id:Meteor.userId()}).avarId
             avatar = UploadAvatar.findbyid avatarid
         avatar
   noimage: ->
-        true
+        Meteor.user().avarId == null
