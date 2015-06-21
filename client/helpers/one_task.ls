@@ -18,7 +18,7 @@ Template.oneTaskContent.helpers do
 
   isExecutant: (task, name, role)->
     if role == 'current-user'
-      Meteor.user().username == name
+      Meteor.user().username == name and task.state != '申请完成'
     else if role == 'applicant'
       task.executant == name
     else if role == 'current-user-or-publisher'
@@ -31,9 +31,11 @@ Template.oneTaskContent.helpers do
     if type == 'select-excutant'
       Meteor.user().username == task.createdBy and task.executant == null
     else if type == 'cancle-publish-task'
-      (task.state == '未完成' or task.state == '待完成' or task.state == '申请完成') and task.state != '已完成' and task.createdBy == Meteor.user().username
+      (task.state == '未完成' or task.state == '待完成') and task.state != '已完成' and task.createdBy == Meteor.user().username
     else if type == 're-publish-task'
       task.state == '已取消' and task.deadline > (new Date()) and task.createdBy == Meteor.user().username
+    else if type == 'complete-confirm'
+      task.state == '申请完成' and task.createdBy == Meteor.user().username
 
   isAdmin: ->
     Meteor.user().username == 'admin'
@@ -51,10 +53,14 @@ Template.oneTaskContent.helpers do
       false
 
   getCredit: (name)->
-    Meteor.users.findOne({username: name}).credit
+    if (Meteor.users.findOne({username: name}).compliteTasksTimes == 0)
+      return 0
+    Meteor.users.findOne({username: name}).totalCredit / Meteor.users.findOne({username: name}).compliteTasksTimes
 
   getProficiency: (name)->
-    Meteor.users.findOne({username: name}).proficiency
+    if (Meteor.users.findOne({username: name}).compliteTasksTimes == 0)
+      return 0
+    Meteor.users.findOne({username: name}).totalProficiency / Meteor.users.findOne({username: name}).compliteTasksTimes
 
   userImageSrc: (name)->
     '/images/hd.jpg'
@@ -109,10 +115,32 @@ Template.oneTaskContent.events do
     AllTasks.update {_id: _id}, {$set: {state: '未完成'}}
     Router.go '/home'
 
+  # 申请完成
   'click .apply-complete': !->
     AllTasks.update {_id: Session.get('oneTaskId')}, {$set: {state: '申请完成'}}
-
-    Meteor.users.update({_id: Meteor.userId()}, {$push: news: {type: 'complete-confirm', content: null, taskId: Session.get('oneTaskId'), unread: true, newsId: new Date()}})
+    createdBy = AllTasks.findOne {_id: Session.get('oneTaskId')} .createdBy
+    _id = Meteor.users.findOne {username: createdBy} ._id
+    Meteor.users.update({_id: _id}, {$push: news: {type: 'complete-confirm', content: null, taskId: Session.get('oneTaskId'), unread: true, newsId: new Date()}})
 
     Router.go '/home'
 
+  # 确认完成
+  'click .complete-confirm': !->
+    AllTasks.update {_id: Session.get('oneTaskId')}, {$set: {state: '已完成'}}
+
+    proficiency = $('.proficiency').val()
+    credit = $('.credits').val()
+    executant = AllTasks.findOne {_id: Session.get('oneTaskId')} .executant
+
+    totalProficiency = Meteor.users.findOne {username: executant} .totalProficiency
+    totalCredit = Meteor.users.findOne {username: executant} .totalCredit
+    compliteTasksTimes = Meteor.users.findOne {username: executant} .compliteTasksTimes
+
+    totalProficiency += proficiency
+    totalCredit += credit
+    compliteTasksTimes++
+
+    _id = Meteor.users.findOne {username: executant} ._id
+    Meteor.users.update({_id: _id}, {$set: {totalProficiency: totalProficiency, totalCredit: totalCredit, compliteTasksTimes: compliteTasksTimes}})
+
+    Router.go '/home'

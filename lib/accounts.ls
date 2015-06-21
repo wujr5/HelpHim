@@ -7,10 +7,12 @@ else
     extra = {
       profileImage: '/images/hd.jpg'
       news: []
-      proficiency : 0
-      credit : 0
       myApplications: []
       avarId: null
+      applyTasksTimes: 0
+      compliteTasksTimes: 0
+      totalProficiency : 0
+      totalCredit : 0
     }
     user <<< extra
     if options.profile

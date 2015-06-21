@@ -101,3 +101,33 @@ template(name='oneTaskContent')
 
         if isPublisher task 're-publish-task'
           button.btn.btn-primary.pull-right.re-publish 重新发布
+
+        if isPublisher task 'complete-confirm'
+          form.form-horizontal
+            div.form-group
+              label.col-sm-9.control-label 熟练度评分
+              div.col-sm-2
+                select.form-control.proficiency
+                  option 1
+                  option 2
+                  option 3
+                  option 4
+                  option 5
+
+              label.col-sm-9.control-label 信任度评分
+              div.col-sm-2
+                select.form-control.credits
+                  option 1
+                  option 2
+                  option 3
+                  option 4
+                  option 5
+              //- div.col-sm-2
+              //-   select.form-control.credit
+              //-     option 1
+              //-     option 2
+              //-     option 3
+              //-     option 4
+              //-     option 5
+
+          button.btn.btn-primary.pull-right.complete-confirm 确认完成
