@@ -5,7 +5,7 @@ if Meteor.isClient
 else
   Accounts.onCreateUser (options, user)->
     extra = {
-      profileImage: '/images/hd.jpg'
+      profileImage: '/images/hd.png'
       news: []
       myApplications: []
       avarId: null

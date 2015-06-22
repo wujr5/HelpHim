@@ -4,6 +4,11 @@ Template.info.helpers do
     user-view = {}
     user-view.username = user-original.username
     user-view.email = user-original.emails[0].address
+    if user-original.compliteTasksTimes is 0
+      user-view.proficiency = 0
+    else
+      user-view.proficiency = user-original.totalProficiency / user-original.compliteTasksTimes
+
     user-view
 
   infoState: ->

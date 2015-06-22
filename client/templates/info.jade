@@ -12,7 +12,7 @@ template(name='info')
             div.col-sm-10
               div.preview
                 if noimage
-                  img.imghead(src="/images/hd.jpg" id="imagename")
+                  img.imghead(src="/images/hd.png" id="imagename")
                 else
                   each userInfo
                     img.imghead(src="{{this.url}}" id="imagename")
@@ -32,7 +32,13 @@ template(name='info')
             div.col-sm-10
               p.col-sm-1.control-label
                 strong #{ user.email }
-          
+
+          div.form-group.textbox
+            label.col-sm-1.control-label(for="upro") 熟练度:
+            div.col-sm-10
+              p.col-sm-1.control-label
+                strong #{ user.proficiency }
+
           if nochange
             div.btn-group.col-md-9(data-toggle="buttons")
               label.btn.btn-primary
