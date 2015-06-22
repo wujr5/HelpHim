@@ -7,7 +7,10 @@ Template.info.helpers do
     if user-original.compliteTasksTimes is 0
       user-view.proficiency = 0
     else
-      user-view.proficiency = user-original.totalProficiency / user-original.compliteTasksTimes
+      proficienc = user-original.totalProficiency / user-original.compliteTasksTimes
+      proficiency = proficienc * 100
+      pro = Math.round(proficiency)
+      user-view.proficiency = pro / 100
 
     user-view
 
