@@ -5,13 +5,16 @@ if Meteor.isClient
 else
   Accounts.onCreateUser (options, user)->
     extra = {
-      profileImage: '/images/hd.jpg'
+      profileImage: '/images/hd.png'
       news: []
-      proficiency : 0
-      credit : 0
       myApplications: []
+      avarId: null
+      applyTasksTimes: 0
+      compliteTasksTimes: 0
+      totalProficiency : 0
+      totalCredit : 0
     }
     user <<< extra
     if options.profile
-      user.profile = options.profile;
+      user.profile = options.profile
     user

@@ -10,6 +10,7 @@ HelpHim网页应用的github仓库，基于meteor。
 2. cd HelpHim
 3. git checkout work-tree
 4. meteor
+5. 访问：http://localhost:3000/home
 ```
 
 #### 贡献到work-tree

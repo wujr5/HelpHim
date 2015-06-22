@@ -1,3 +1,3 @@
 Template.newsList.helpers {
-    newsList: -> Meteor.user!.news
+    newsList: -> Meteor.user!.news.reverse!
 }

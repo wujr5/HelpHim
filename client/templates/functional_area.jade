@@ -1,8 +1,12 @@
 template(name='functionalArea')
   div.col-md-3.function-area.text-center
     div.profile
-      a(href='/')
-        img.img-circle(src='/images/hd.jpg')
+      a(href='/info')
+        if noimage
+          img.img-circle(src="/images/hd.png")
+        else
+          each userInfo
+            img.img-circle(src="{{this.url}}", alt="avatar")
       h4 
         a
           +loginButtons
@@ -10,5 +14,8 @@ template(name='functionalArea')
       div.function
         a.btn.btn-info.btn-block(href='/home') 主页
         a.btn.btn-info.btn-block(href='/newsList') 消息
+          if unreadMessageNum != 0
+            span.unread-red-dot
+              | #{ unreadMessageNum }
         a.btn.btn-info.btn-block(href='/publishTask') 发布任务
         a.btn.btn-info.btn-block(href='/myTask') 我的任务
